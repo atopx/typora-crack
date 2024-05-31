@@ -1,6 +1,8 @@
 use std::convert::AsRef;
 use std::env::args;
-use std::fs::{self, File, OpenOptions};
+use std::fs::File;
+use std::fs::OpenOptions;
+use std::fs::{self};
 use std::io::Write;
 use std::ops::Not;
 use std::path::PathBuf;
@@ -34,10 +36,7 @@ fn main() {
 
     // reject hook.js
     let hook_path = root.join("node/raven/hook.js");
-    File::create(hook_path)
-        .unwrap()
-        .write_all(HOOK_BYTES)
-        .unwrap();
+    File::create(hook_path).unwrap().write_all(HOOK_BYTES).unwrap();
 
     // reject index.js
     let index_path = root.join("node/raven/index.js");

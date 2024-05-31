@@ -1,15 +1,9 @@
 /// Align `size` by rounding it up to a multiple of 4.
-pub fn align_size(size: usize) -> usize {
-    size + (4 - (size % 4)) % 4
-}
+pub fn align_size(size: usize) -> usize { size + (4 - (size % 4)) % 4 }
 
 /// Read a little-endian 32-bit unsigned integer from the buffer.
 pub fn read_u32(buffer: &[u8]) -> u32 {
-    buffer
-        .iter()
-        .take(4)
-        .enumerate()
-        .fold(0, |result, (i, byte)| result + ((*byte as u32) << (i * 8)))
+    buffer.iter().take(4).enumerate().fold(0, |result, (i, byte)| result + ((*byte as u32) << (i * 8)))
 }
 
 /// Write a little-endian 32-bit unsigned integer to the buffer.

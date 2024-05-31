@@ -1,5 +1,7 @@
-use std::sync::atomic::{AtomicUsize, Ordering};
-use std::time::{SystemTime, UNIX_EPOCH};
+use std::sync::atomic::AtomicUsize;
+use std::sync::atomic::Ordering;
+use std::time::SystemTime;
+use std::time::UNIX_EPOCH;
 
 const LICENSE_CHARS: &str = "L23456789ABCDEFGHJKMNPQRSTUVWXYZ";
 static COUNTER: AtomicUsize = AtomicUsize::new(0);
@@ -10,10 +12,7 @@ pub fn license() -> String {
     let mut result = String::with_capacity(length);
 
     for _ in 0..length {
-        let mut seed = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .unwrap()
-            .as_nanos() as usize;
+        let mut seed = SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_nanos() as usize;
         seed ^= COUNTER.fetch_add(1, Ordering::SeqCst);
         let index = seed % chars.len();
         result.push(chars[index]);

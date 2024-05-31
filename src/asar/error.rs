@@ -1,4 +1,8 @@
-use std::{convert::From, error, fmt, io, num::ParseIntError};
+use std::convert::From;
+use std::error;
+use std::fmt;
+use std::io;
+use std::num::ParseIntError;
 
 /// Enum of all possible errors during manipulation of asar archives.
 #[derive(Debug)]
@@ -32,25 +36,17 @@ impl error::Error for Error {
 }
 
 impl From<io::Error> for Error {
-    fn from(err: io::Error) -> Self {
-        Error::Io(err)
-    }
+    fn from(err: io::Error) -> Self { Error::Io(err) }
 }
 
 impl From<serde_json::Error> for Error {
-    fn from(err: serde_json::Error) -> Self {
-        Error::Json(err)
-    }
+    fn from(err: serde_json::Error) -> Self { Error::Json(err) }
 }
 
 impl From<glob::GlobError> for Error {
-    fn from(err: glob::GlobError) -> Self {
-        Error::Glob(err)
-    }
+    fn from(err: glob::GlobError) -> Self { Error::Glob(err) }
 }
 
 impl From<ParseIntError> for Error {
-    fn from(err: ParseIntError) -> Self {
-        Error::Value(err)
-    }
+    fn from(err: ParseIntError) -> Self { Error::Value(err) }
 }

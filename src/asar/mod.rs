@@ -1,17 +1,23 @@
 mod error;
 mod util;
 
+use std::env;
+use std::fs;
+use std::fs::File;
+use std::fs::OpenOptions;
+use std::io;
+use std::io::prelude::*;
+use std::path::Component;
+use std::path::Path;
+use std::path::PathBuf;
+
 pub use error::Error;
 use glob::glob;
-use serde_json::{json, Value};
-use std::{
-    env, fs,
-    fs::{File, OpenOptions},
-    io,
-    io::{prelude::*, SeekFrom},
-    path::{Component, Path, PathBuf},
-};
-use util::{align_size, read_u32, write_u32};
+use serde_json::json;
+use serde_json::Value;
+use util::align_size;
+use util::read_u32;
+use util::write_u32;
 
 const MAX_SIZE: u64 = std::u32::MAX as u64;
 
@@ -39,13 +45,10 @@ fn read_header(reader: &mut File) -> Result<(u32, Value), io::Error> {
 
 /// Iterate over all entries in an asar archive while forwarding errors from the passed closure.
 fn iterate_entries_err(
-    json: &Value,
-    mut callback: impl FnMut(&Value, &PathBuf) -> Result<(), Error>,
+    json: &Value, mut callback: impl FnMut(&Value, &PathBuf) -> Result<(), Error>,
 ) -> Result<(), Error> {
     fn helper(
-        current: &Value,
-        path: PathBuf,
-        callback: &mut impl FnMut(&Value, &PathBuf) -> Result<(), Error>,
+        current: &Value, path: PathBuf, callback: &mut impl FnMut(&Value, &PathBuf) -> Result<(), Error>,
     ) -> Result<(), Error> {
         callback(current, &path)?;
         if current["files"] != Value::Null {
@@ -79,17 +82,12 @@ pub(crate) fn pack(path: &str, dest: &str) -> Result<(), Error> {
     let dir = env::current_dir()?.join(path);
     if dir.exists() {
         fn walk_dir(
-            dir: impl AsRef<Path>,
-            json: &mut Value,
-            offset: &mut u64,
+            dir: impl AsRef<Path>, json: &mut Value, offset: &mut u64,
         ) -> Result<Vec<PathBuf>, Error> {
             let mut files = vec![];
             for entry in fs::read_dir(dir)? {
                 let entry = entry?;
-                let name = entry
-                    .file_name()
-                    .into_string()
-                    .expect("Error converting OS path to string");
+                let name = entry.file_name().into_string().expect("Error converting OS path to string");
                 let meta = entry.metadata()?;
                 if meta.is_file() {
                     let size = meta.len();
@@ -111,11 +109,7 @@ pub(crate) fn pack(path: &str, dest: &str) -> Result<(), Error> {
                     json[&name] = json!({
                         "files": {}
                     });
-                    files.append(&mut walk_dir(
-                        entry.path(),
-                        &mut json[&name]["files"],
-                        offset,
-                    )?);
+                    files.append(&mut walk_dir(entry.path(), &mut json[&name]["files"], offset)?);
                 }
             }
             Ok(files)
@@ -134,18 +128,11 @@ pub(crate) fn pack(path: &str, dest: &str) -> Result<(), Error> {
                 })
                 .collect();
             for comp in comps.iter().take(comps.len() - 1) {
-                let name = comp
-                    .file_name()
-                    .unwrap()
-                    .to_str()
-                    .expect("Error converting OS path to string");
+                let name =
+                    comp.file_name().unwrap().to_str().expect("Error converting OS path to string");
                 current = &mut current[name]["files"];
             }
-            let name = entry
-                .file_name()
-                .unwrap()
-                .to_str()
-                .expect("Error converting OS path to string");
+            let name = entry.file_name().unwrap().to_str().expect("Error converting OS path to string");
             if entry.is_file() {
                 let size = entry.metadata()?.len();
                 if size > MAX_SIZE {
@@ -220,7 +207,7 @@ pub(crate) fn unpack(archive: &str, dest: &str) -> Result<(), Error> {
         if val["offset"] != Value::Null {
             let offset = val["offset"].as_str().unwrap().parse::<u64>()?;
             let size = val["size"].as_u64().unwrap();
-            file.seek(SeekFrom::Start(header_size as u64 + offset))?;
+            file.seek(io::SeekFrom::Start(header_size as u64 + offset))?;
             let mut buffer = vec![0u8; size as usize];
             file.read_exact(&mut buffer)?;
             fs::write(dest.join(path), buffer)?;
