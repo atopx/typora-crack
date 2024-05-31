@@ -50,6 +50,9 @@ fn main() {
     // pack resource
     asar::pack(dst_str, src_str).unwrap();
 
+    // clean
+    fs::remove_dir_all(&dst).unwrap();
+
     // generate listen code
-    println!("listen code: {}", gencode::license());
+    println!("Email address can be filled in freely, you are listen-code: {}", gencode::license());
 }
