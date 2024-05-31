@@ -1,0 +1,8 @@
+[package]
+name = "typora-crack"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+glob = "0.3.1"
+serde_json = "1.0.117"
