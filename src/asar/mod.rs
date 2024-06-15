@@ -19,7 +19,7 @@ use util::align_size;
 use util::read_u32;
 use util::write_u32;
 
-const MAX_SIZE: u64 = std::u32::MAX as u64;
+const MAX_SIZE: u64 = u32::MAX as u64;
 
 /// Read the header of an asar archive and extract the header size & json.
 ///
