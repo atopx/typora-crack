@@ -14,12 +14,16 @@ cargo build --release
 
 # Setup-2 Find installed path
 
-> 找到 Typora 的安装路径, 自行替换路径
+> 找到`Typora`的安装路径
 
 ![alt text](./img/installpath.png)
 
 
 # Setup-3 Crack
+
+> 替换参数为你的`Typora`的安装路径：
+> 
+> `./target/release/typora-crack [your typora installed path]`
 
 ```sh
 # windows
