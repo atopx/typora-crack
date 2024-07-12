@@ -54,5 +54,5 @@ fn main() {
     fs::remove_dir_all(&dst).unwrap();
 
     // generate listen code
-    println!("Email address can be filled in freely, you are listen-code: {}", gencode::license());
+    println!("Email address can be filled in freely, license code: {}", gencode::license());
 }
