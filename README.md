@@ -1,36 +1,37 @@
-
-# 自行构建使用
-
-> rust 1.70+
-
-测试通过: linux mint21.3 / win11 / macos13
+# 安装
 
 
-# Setup-1 Build
+## 自动安装
+
+
+### cargo
+
+```
+cargo install typora-crack
+```
+
+## 编译安装
+
+> 编译生成的可执行命令文件在`./target/release/`
 
 ```sh
+git clone github.com/atopx/typora-crack.git
+cd typora-crack
 cargo build --release
-``` 
+```
 
-# Setup-2 Find installed path
-
-> 找到`Typora`的安装路径
-
-![alt text](./img/installpath.png)
-
-
-# Setup-3 Crack
+# 使用
 
 > 替换参数为你的`Typora`的安装路径：
-> 
-> `./target/release/typora-crack [your typora installed path]`
+>
+> `typora-crack [your typora installed path]`
 
 ```sh
 # windows
-.\target\release\typora-crack.exe C:\app\Typora
+typora-crack.exe C:\app\Typora
 
 # linux
-sudo ./target/release/typora-crack /usr/share/typora
+sudo typora-crack /usr/share/typora
 ```
 
 ![](./img/register.png)
@@ -39,6 +40,3 @@ sudo ./target/release/typora-crack /usr/share/typora
 > Email can be filled in freely, then input crack license code.
 
 ![OK](./img/success.png)
-
-
-
