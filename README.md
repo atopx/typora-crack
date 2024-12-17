@@ -1,8 +1,13 @@
 # 安装
 
+### 方式一：下载二进制可执行文件
 
-## 自动安装
+> 其他系统请参考下面另外的方式
+- [MacOS AppleSilicon](https://github.com/atopx/typora-crack/releases/download/v0.1.1/typora-crack-apple-silicon)
+- [Linux x86_64](https://github.com/atopx/typora-crack/releases/download/v0.1.1/typora-crack-linux-amd64)
+- [Windows x86_64](https://github.com/atopx/typora-crack/releases/download/v0.1.1/typora-crack-win-amd64.exe)
 
+### 方式二：Cargo 安装
 
 ### cargo
 
@@ -10,7 +15,7 @@
 cargo install typora-crack
 ```
 
-## 编译安装
+### 方式三：源码编译安装
 
 > 编译生成的可执行命令文件在`./target/release/`
 
