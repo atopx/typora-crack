@@ -7,13 +7,8 @@
 - [Linux x86_64](https://github.com/atopx/typora-crack/releases/download/v0.1.1/typora-crack-linux-amd64)
 - [Windows x86_64](https://github.com/atopx/typora-crack/releases/download/v0.1.1/typora-crack-win-amd64.exe)
 
-### 方式二：Cargo 安装
+### ~~方式二：Cargo 安装~~
 
-### cargo
-
-```
-cargo install typora-crack
-```
 
 ### 方式三：源码编译安装
 
