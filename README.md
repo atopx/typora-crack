@@ -1,3 +1,5 @@
+***JUST FOR LEARNING PURPOSES, DON'T USE THIS TO CRACK SOFTWARE***
+
 # 安装
 
 ### 方式一：下载二进制可执行文件
@@ -39,4 +41,4 @@ sudo typora-crack /usr/share/typora
 # Successful
 > Email can be filled in freely, then input crack license code.
 
-![OK](./img/success.png)
+
