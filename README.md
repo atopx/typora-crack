@@ -4,7 +4,9 @@
 
 **Notice**: The maximum supported version is 1.95， Download version below 1.9.5
 
-**Recommended** version 1.8.10
+**Recommended** 
+  - 1.9.5: [MacOS](https://download.typora.io/mac/Typora-1.9.5.dmg) | [Windows x64](https://download.typora.io/windows/typora-setup-x64-1.9.5.exe) | [Linux deb](https://download.typora.io/linux/typora_1.9.5_amd64.deb) | [Linux tgz](https://download.typora.io/linux/Typora-linux-x64-1.9.5.tar.gz)
+  - 1.8.10: [MacOS](https://download.typora.io/mac/Typora-1.8.10.dmg) | [Windows x64](https://download.typora.io/windows/typora-setup-x64-1.8.10.exe) | [Linux deb](https://download.typora.io/linux/typora_1.8.10_amd64.deb) | [Linux tgz](https://download.typora.io/linux/Typora-linux-x64-1.8.10.tar.gz)
 
 [Typora All Release](https://typora.io/releases/all)
 
