@@ -1,8 +1,12 @@
 ***JUST FOR LEARNING PURPOSES, DON'T USE THIS TO CRACK SOFTWARE***
 
 # 安装
-**Notice**: The maximum supported version is 1.95， Download version below 1.9.5， Typora All Release
+
+**Notice**: The maximum supported version is 1.95， Download version below 1.9.5
+
 **Recommended** version 1.8.10
+
+[Typora All Release](https://typora.io/releases/all)
 
 
 ### 方式一：下载二进制可执行文件
