@@ -65,16 +65,7 @@ fn iterate_entries_err(
 }
 
 /// Pack a directory into an asar archive.
-///
-/// # Examples
-///
-/// ```no_run
-/// match rasar::pack("myfolder", "myarchive.asar") {
-///     Ok(()) => println!("Success!"),
-///     Err(err) => panic!("This should not have happened!")
-/// }
-/// ```
-pub(crate) fn pack(path: &str, dest: &str) -> Result<(), Error> {
+pub fn pack(path: &str, dest: &str) -> Result<(), Error> {
     let mut header_json = json!({
         "files": {}
     });
@@ -156,7 +147,7 @@ pub(crate) fn pack(path: &str, dest: &str) -> Result<(), Error> {
             }
         }
     } else {
-        panic!("{} is neither a valid directory nor glob", path);
+        return Err(Error::InvalidPath(format!("{} is neither a valid directory nor glob", path)));
     }
 
     // create header buffer with json
@@ -190,7 +181,7 @@ pub(crate) fn pack(path: &str, dest: &str) -> Result<(), Error> {
     Ok(())
 }
 
-pub(crate) fn unpack(archive: &str, dest: &str) -> Result<(), Error> {
+pub fn unpack(archive: &str, dest: &str) -> Result<(), Error> {
     let mut file = File::open(archive)?;
 
     // read header

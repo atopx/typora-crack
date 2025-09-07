@@ -11,6 +11,7 @@ pub enum Error {
     Value(ParseIntError),
     Json(serde_json::Error),
     Glob(glob::GlobError),
+    InvalidPath(String),
 }
 
 impl fmt::Display for Error {
@@ -20,6 +21,7 @@ impl fmt::Display for Error {
             Error::Value(ref err) => write!(f, "Error parsing int: {}", err),
             Error::Json(ref err) => write!(f, "Error parsing JSON: {}", err),
             Error::Glob(ref err) => write!(f, "Error parsing glob: {}", err),
+            Error::InvalidPath(ref msg) => write!(f, "Invalid path: {}", msg),
         }
     }
 }
@@ -31,6 +33,7 @@ impl error::Error for Error {
             Error::Value(ref err) => Some(err),
             Error::Json(ref err) => Some(err),
             Error::Glob(ref err) => Some(err),
+            Error::InvalidPath(_) => None,
         }
     }
 }

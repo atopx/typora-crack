@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typora Crack Tool</title>
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="header">
+        <h1>Typora 学习工具</h1>
+        <p class="subtitle">仅供学习研究使用，请勿用于商业用途</p>
+      </div>
+
+       <div id="status-message" class="status-message"></div>
+
+      <div class="content">
+        <div class="section">
+          <h3>安装目录</h3>
+          <div class="action-row">
+            <input type="text" id="install-path" placeholder="请选择Typora安装目录..." readonly />
+            <button id="select-folder" class="btn btn-primary">选择目录</button>
+            <button id="process-btn" class="btn btn-success" disabled>开始处理</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>许可证码</h3>
+          <div class="license-row">
+            <input type="text" id="license-code" placeholder="处理完成后将显示许可证码..." readonly />
+            <button id="copy-license" class="btn btn-secondary" disabled>复制</button>
+            <button id="generate-license" class="btn btn-outline">生成新码</button>
+          </div>
+        </div>
+       
+      </div>
+    </main>
+  </body>
+</html>

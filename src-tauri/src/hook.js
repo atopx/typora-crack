@@ -1,6 +1,5 @@
 // JUST FOR LEARNING PURPOSES, DON'T USE THIS TO CRACK SOFTWARE
 
-//Adding hook
 const crypto = require("crypto");
 const pubdec = crypto["publicDecrypt"];
 delete crypto["publicDecrypt"];
@@ -123,5 +122,3 @@ let validator = {
 let proxy = new Proxy(console, validator);
 console = proxy
 module.exports = fetch
-
-//hook finished
